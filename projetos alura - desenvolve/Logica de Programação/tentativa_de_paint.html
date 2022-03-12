@@ -1,0 +1,78 @@
+<meta charset="UTF-8">
+
+<canvas width="1250" height="600"></canvas>
+
+<script>
+    var tela = document.querySelector('canvas');     
+    var pincel = tela.getContext('2d');              
+   
+    pincel.strokeStyle = 'black';                       //escolhe a cor do retangulo utilizado
+    pincel.strokeRect(0,0, 1250, 600);               //cria o retangulo limitante
+   
+
+    function dedesenhaCirculo(evento) {
+        var x = evento.pageX - tela.offsetLeft;  //arquiva em x a posição do click no canvas
+        var y = evento.pageY - tela.offsetTop;    //arquiva em y a posição do click no canvas
+
+        if(evento.shiftKey){
+            pincel.fillStyle= cores[contador];     //escolhe a cor do pincel
+            pincel.beginPath();        // inicia o desenho 
+            pincel.arc(x, y, 20, 0, 2*3.14);    //desenha o circulo
+            pincel.fill();             //pinta
+        }
+        else{
+        pincel.fillStyle= cores[contador];     //escolhe a cor do pincel
+        pincel.beginPath();        // inicia o desenho 
+        pincel.arc(x, y, 10, 0, 2*3.14);    //desenha o circulo
+        pincel.fill();             //pinta
+        } 
+
+        console.log("posição do clique : " + x + ", " + y);
+    }
+
+    function mudaCor (){
+        contador++
+        if(contador>=cores.length){
+            contador=0;
+        } 
+         return false;
+    }
+
+    //function corExiste (cor){
+       // for(var j = 0; j < cores.length; j++){
+            //if(cor == cores[j]){
+               // return true;
+               // break;
+           // }
+           // else{
+            //    return false;
+         //   }
+     //   }
+  //  }
+
+    var cores = [];
+    var contador = 0
+    var numeroDeCores = prompt("informe o número de cores que deseja utilizar:");
+    
+    document.write("<br>Cores escolhidas:<br>");
+
+    cores[0] = prompt("informe a cor número 1 (deve estar em inglês e sem espaços):");
+    
+    for(i=1; i<numeroDeCores; i++){
+     cores[i] = prompt("informe a cor número " + (i+1) + " (deve estar em inglês e sem espaços):");
+        for(var j = 0; j < (cores.length - 1); j++){
+            while(cores[i] == cores[j]){
+            cores[i] = prompt("a cor " + cores[i] + " já foi inserida, por favor, insira outra cor (deve estar em inglês e sem espaços):");
+            }
+        }
+    }
+
+
+    for(i=0; i<numeroDeCores; i++){
+        document.write((i+1) + "- " + cores[i] + "<br>");
+    }                     //rever essa parte, não ta imprimindo na tela
+
+    tela.onclick = dedesenhaCirculo;
+    tela.oncontextmenu = mudaCor;
+   
+</script>

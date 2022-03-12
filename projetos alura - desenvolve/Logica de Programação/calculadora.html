@@ -1,0 +1,68 @@
+<meta charset="UTF-8">
+
+<script>
+    //funções ################################
+function soma(num1,num2) {              //função que calcula a soma dos números.
+    return(num1+num2);
+}
+
+function subtrai(num1,num2) {          //função que calcula a subtração dos números.
+    return(num1-num2);
+}
+
+function multiplica(num1,num2) {      //função que calcula a multiplicação dos números.
+    return (num1*num2);
+}
+
+function divide(num1,num2) {           //função que calcula a divisão dos números.
+    return (num1/num2);
+}
+
+function verifica(opção) {             //função que verifica se a opção inserida pelo usuário é válida.
+        if (opção == "1" ||opção == "2"||opção == "3"||opção == "4"){
+            return (true);
+        } else{
+            return (false);
+        }
+    }
+
+function exibeResultado (num1,num2,operador,resultado){        //função que exibe o resultado calculado
+ document.write("<h3><center>"+ num1 + operador + num2 + " = " + resultado + "</center><h3>");
+}
+
+// Tela ########################################
+
+document.write("<hr><br><h1><center><i> CALCULADORA</i></center></h1><br><hr><br>") // imprime na tela o titulo do programa.
+
+alert("Olá, sou uma calculadora. Eu posso: dividir, somar, multiplicar e subtrair.");  //apresentação e seleção da função desejada
+var operação = prompt ("Para começar, insira qual função deseja realizar dentre as opções: \n 1- Soma \n 2- Subtração \n 3- Multiplicação \n 4- Divisão");
+
+if (verifica(operação)==false){     //verificando a seleção do usuário
+   do{
+       operação= prompt("A opção inserida é inválida, por favor, selecione dentre as opções:\n 1- Soma \n 2- Subtração \n 3- Multiplicação \n 4- Divisão");
+   } while (verifica(operação)==false);
+}
+numero1 = parseInt(prompt("Insira o primeiro número:"));         //solicitando a entrada dos números.
+numero2 = parseInt(prompt("Agora insira o segundo número:"));
+
+if (operação == 1){
+    resultado = soma (numero1, numero2);                       //calculando de acordo com a opção escolhida
+    exibeResultado(numero1, numero2,"+",resultado)
+}
+
+if (operação == 2){
+    resultado = subtrai (numero1, numero2);
+    exibeResultado(numero1, numero2,"-",resultado)
+}
+
+if (operação == 3){
+    resultado = multiplica (numero1, numero2);
+    exibeResultado(numero1, numero2,"*",resultado)
+}
+
+if (operação == 4){
+    resultado = divide (numero1, numero2);
+    exibeResultado(numero1, numero2,"/",resultado)
+}
+document.write("<center><h4>FIM</center></h4>");           //mostrando que o programa chegou ao fim da execução.
+</script>
